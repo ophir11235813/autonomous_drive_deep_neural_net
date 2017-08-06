@@ -38,7 +38,7 @@ python drive.py model.h5
 Training data was chosen to represent various driving styles, including "examples" of safe driving and how to recover from unsafe situations. 
 
 <table class="image">
-<caption align="bottom">{{ "Borejwiorjiowew" }}</caption>
+<caption align="bottom">{{ Borejwiorjiowew }}</caption>
 <tr><td><img src="./images/images/center_driving.jpg" alt="{{ SECOND DES }}"/></td></tr>
 </table>
 
