@@ -1,15 +1,14 @@
-# End-to-end autonomous drive in virtal environment
+# End-to-end autonomous driving 
 ---
 
+## Overview
 
-
-The goals / steps of this project are the following:
-* Use the simulator to collect data of good driving behavior
-* Build, a convolution neural network in Keras that predicts steering angles from images
-* Train and validate the model with a training and validation set
-* Test that the model successfully drives around track one without leaving the road
+The goal for this project was to:
+* Use the simulator to collect data of good driving behavior, including some edge cases and examples of recovery when driving behavior becomes critical/eratic.
+* Build a convolution neural network using Keras that predicts steering angles from images, captured from (virtual) sensors/cameras on the body of the car
+* Train and validate a model based on Nvidia's end-to-end deep learning architectures
+* Test that the model successfully drives around the track safely (without leaving the road)
 * Summarize the results with a written report
-
 
 [//]: # (Image References)
 
