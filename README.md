@@ -14,13 +14,11 @@ The goal for this project was to:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[image1]: ./images/images/center_driving.jpg "Image collected from center camera"
+[image2]: ./images/images/left_recovery.jpg "Vehicle recovering to the right as it approaches the left lane"
+[image3]: ./images/images/right_recovery.jpg "Vehicle recovering to the left as it approaches the right lane"
+[image4]: ./images/images/flipped.jpg "For augmentation, each image is flipped (left-to-right)"
+[image5]: ./images/images/nvidia.png "Nvidia's model architecture for end-to-end deep learning autonomous driving"
 
 ---
 ### Files & Code 
@@ -41,16 +39,15 @@ Training data was chosen to represent various driving styles, including "example
 
 The data is a combination of:
 * <b>Center lane driving: </b>recorded from two laps in the forward (anti-clockwise) direction plus one lap in the backward (clockwise) direction. Here is an example image of center lane driving:
-![alt text][image2]
+![alt text][image1]
 * <b>Recovery driving: </b>recorded when the car is centering itself from the edge of the lane. This recovery data was recorded from both sides of the lane (left- and right-recovery). This was so that the vehicle could learn to recover whenever it approached the lane lines. 
 
+![alt text][image2]
 ![alt text][image3]
-![alt text][image4]
-![alt text][image5]
 
 * <b>Data augmentation</b>: the track contains mostly left turns. Hence, the training images were flipped (left-to-right) to increase the model's performance on right turns. For example, here is an image that has then been flipped:
 
-![alt text][image6]
+![alt text][image4]
 
 Ultimately, during training approximately <b> 42,000 </b> images were collected from the three camera sensors around the vehicle (left/center/right). 
 
