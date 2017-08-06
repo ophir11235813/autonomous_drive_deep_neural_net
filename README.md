@@ -60,7 +60,7 @@ The model is based on Nvidia's "End-to-End Deep Learning for Self-Driving Cars" 
 
 The model is constructed in the following way: images are normalized (line 88); then put through four convolutional feature maps (three with 5x5 kernels, then two with 3x3 kernels, lines 91-94); followed by four fully-connected layers (lines 98-101). The model includes ReLU layers in between the convolution layers to introduce non-linearlity. 
 
-[image1]: ./examples/placeholder.png "Model Visualization" NVIDIA IMAGE
+[image5]
 
 #### 2. Solution Design Approach
 
