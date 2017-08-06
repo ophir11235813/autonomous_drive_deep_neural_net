@@ -1,4 +1,4 @@
-# End-to-end autonomous driving 
+# End-to-end autonomous driving using deep neural networks with Udacity (open source) virtual driving environment
 ---
 
 ## Overview
@@ -20,104 +20,66 @@ The goal for this project was to:
 [image6]: ./examples/placeholder_small.png "Normal Image"
 [image7]: ./examples/placeholder_small.png "Flipped Image"
 
-## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
-
 ---
-###Files Submitted & Code Quality
+###Files & Code 
 
-####1. Submission includes all required files and can be used to run the simulator in autonomous mode
+The project includes the following files:
+* model.py: containing the script to create and train the model. The annotated code shows the pipeline used for training and validating the model.
+* drive.py: for driving the car in autonomous mode within Udacity's virtual driving environment
+* model.h5: containing the trained convolution neural network (too large to put on Github)
 
-My project includes the following files:
-* model.py containing the script to create and train the model
-* drive.py for driving the car in autonomous mode
-* model.h5 containing a trained convolution neural network 
-* writeup_report.md or writeup_report.pdf summarizing the results
-
-####2. Submission includes functional code
-Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
+####2. Running the autonomous vehicle within the virtual enviroment
+Using the Udacity-provided simulator and the above drive.py code, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
 ```
+### Collecting and pre-processing training data
 
-####3. Submission code is usable and readable
+Training data was chosen to represent various driving styles, including "examples" of safe driving and how to recover from unsafe situations. 
 
-The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
-
-###Model Architecture and Training Strategy
-
-####1. An appropriate model architecture has been employed
-
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
-
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
-
-####2. Attempts to reduce overfitting in the model
-
-The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
-
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
-
-####3. Model parameter tuning
-
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
-
-####4. Appropriate training data
-
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
-
-For details about how I created the training data, see the next section. 
-
-###Model Architecture and Training Strategy
-
-####1. Solution Design Approach
-
-The overall strategy for deriving a model architecture was to ...
-
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
-
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
-
-To combat the overfitting, I modified the model so that ...
-
-Then I ... 
-
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
-
-At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
-
-####2. Final Model Architecture
-
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
-
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
-
-![alt text][image1]
-
-####3. Creation of the Training Set & Training Process
-
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
-
+The data is a combination of:
+* <b>Center lane driving: </b>recorded from two laps in the forward (anti-clockwise) direction plus one lap in the backward (clockwise) direction. Here is an example image of center lane driving:
 ![alt text][image2]
-
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
+* <b>Recovery driving: </b>recorded when the car is centering itself from the edge of the lane. This recovery data was recorded from both sides of the lane (left- and right-recovery). This was so that the vehicle could learn to recover whenever it approached the lane lines. 
 
 ![alt text][image3]
 ![alt text][image4]
 ![alt text][image5]
 
-Then I repeated this process on track two in order to get more data points.
-
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+* <b>Data augmentation</b>: the track contains mostly left turns. Hence, the training images were flipped (left-to-right) to increase the model's performance on right turns. For example, here is an image that has then been flipped:
 
 ![alt text][image6]
-![alt text][image7]
 
-Etc ....
+Ultimately, during training approximately <b> 42,000 </b> images were collected from the three camera sensors around the vehicle (left/center/right). 
 
-After the collection process, I had X number of data points. I then preprocessed this data by ...
+The images were then cropped, as only ~50% of their height contained useful information (the lower section of the image was the vehicle's hood/side, while the upper section displayed the sky, which isn't constructive to the model). Finally, within the model, they were normalized so image values (across the three RGB channels) were between -0.5 and 0.5.
+
+###Model Architecture and Training Strategy
+
+####1. Architecture
+The model is based on Nvidia's "End-to-End Deep Learning for Self-Driving Cars" found <a href = "https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/"> here </a>. It is a convolution neural network that is constructed in the following format 
+
+The model is constructed in the following way: images are normalized (line 88); then put through four convolutional feature maps (three with 5x5 kernels, then two with 3x3 kernels, lines 91-94); followed by four fully-connected layers (lines 98-101). The model includes ReLU layers in between the convolution layers to introduce non-linearlity. 
+
+[image1]: ./examples/placeholder.png "Model Visualization" NVIDIA IMAGE
+
+####2. Model parameter tuning and reducing model overfitting 
+
+The data was separated between training (80%) and validation (20%). The model was tested by running it through the simulator in autonomous mode and ensuring that the vehicle beyhaved safely (e.g. stayed on the track and did not perform any behavior that would be dangerous to passengers in the vehicle).
+
+The model used an adam optimizer, so the learning rate was not tuned manually (line 105). Three epochs were run as, beyond that, the model began to overfit the data. 
 
 
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
+###Model Architecture and Training Strategy
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+####1. Solution Design Approach
+
+The high-level strategy for deriving a model architecture was to
+* <b> start with a simple model </b> (e.g. simple linear regression, not a deep neural network), and see where it failed. The linear regression managed to drive the car for ~5 seconds before going off the track. This was to be expected as a linear regression is far too simple...
+
+* <b> improving the model by adding more layers </b>, beginning with LeNet and then gradually converging on the Nvidia end-to-end deep neural network. LeNet worked well on a previous project (identifying traffic signs), however it had trouble turning the car around corners accurately. Nvidia's solution has proved effective in real-world scenarios, and so it ultimately replaced LeNet in this model. 
+
+* <b> testing the model to see where the vehicle failed on the track. </b> At those points of the track, I collected additional training data. For example, there were instances where one wheel left the lane on a turn – in that case, I added more training data collected from that position in the track.
+
+Ultimately, the vehicle was able to </b> drive autonomously around the track within the lane lines at all times. </b>
+
