@@ -38,16 +38,13 @@ python drive.py model.h5
 Training data was chosen to represent various driving styles, including "examples" of safe driving and how to recover from unsafe situations. 
 
 The data is a combination of:
-* <b>Center lane driving: </b>recorded from two laps in the forward (anti-clockwise) direction plus one lap in the backward (clockwise) direction. Here is an example image of center lane driving:
-![alt text][image1]
+* <b>Center lane driving: </b>recorded from two laps in the forward (anti-clockwise) direction plus one lap in the backward (clockwise) direction. Here is an example image of center lane driving (Fig 1):
 * <b>Recovery driving: </b>recorded when the car is centering itself from the edge of the lane. This recovery data was recorded from both sides of the lane (left- and right-recovery). This was so that the vehicle could learn to recover whenever it approached the lane lines. 
-
-![alt text][image2]
-![alt text][image3]
-
 * <b>Data augmentation</b>: the track contains mostly left turns. Hence, the training images were flipped (left-to-right) to increase the model's performance on right turns. For example, here is an image that has then been flipped:
-
-![alt text][image4]
+![Fig1][image1]
+![Fig2][image2]
+![Fig3][image3]
+![Fig4][image4]
 
 Ultimately, during training approximately <b> 42,000 </b> images were collected from the three camera sensors around the vehicle (left/center/right). 
 
@@ -57,9 +54,9 @@ The images were then cropped, as only ~50% of their height contained useful info
 
 #### 1. Architecture
 The model is based on Nvidia's "End-to-End Deep Learning for Self-Driving Cars" found <a href = "https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/"> here </a>. It is a convolution neural network that is constructed using the following architecture: 
-*<b> images are normalized </b> (line 88) so that their values lie between [-0.5, 0.5]
-*<b> images put through four convolutional feature maps </b> with three with 5x5 kernels, then two with 3x3 kernels, (lines 91-94), followed by
-*<b> four fully-connected layers </b> (lines 98-101). The model includes ReLU layers in between the convolution layers to introduce non-linearlity. 
+* <b> images are normalized </b> (line 88) so that their values lie between [-0.5, 0.5]
+* <b> images put through four convolutional feature maps </b> with three with 5x5 kernels, then two with 3x3 kernels, (lines 91-94), followed by
+* <b> four fully-connected layers </b> (lines 98-101). The model includes ReLU layers in between the convolution layers to introduce non-linearlity. 
 
 #### 2. Solution Design Approach
 
