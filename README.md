@@ -10,6 +10,8 @@ The goal for this project was to:
 * Test that the model successfully drives around the track safely (without leaving the road)
 * Summarize the results with a written report
 
+<b> Result : The vehicle was able to drive autonomously around the track within the lane lines at all times. </b>
+
 [//]: # (Image References)
 
 [image1]: ./examples/placeholder.png "Model Visualization"
@@ -78,5 +80,5 @@ The data was separated between training (80%) and validation (20%). The model wa
 
 The model used an adam optimizer, so the learning rate was not tuned manually (line 105). Three epochs were run as, beyond that, the model began to overfit the data. 
 
-Ultimately, the vehicle was able to </b> drive autonomously around the track within the lane lines at all times. </b>
+
 
