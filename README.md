@@ -10,7 +10,7 @@ The goal for this project was to:
 * Test that the model successfully drives around the track safely (without leaving the road)
 * Summarize the results with a written report
 
-<b> Result : The vehicle was able to drive autonomously around the track within the lane lines at all times. </b>
+<b> Result : The vehicle was able to drive autonomously around the track within the lane lines at all times. </b> The video of the output can be found <a href="https://www.youtube.com/watch?v=0YGY1YVQxG0&lc=z22vu3cwjvupxvoo504t1aokgkkbzzybbvdpip3l5wt1bk0h00410">here</a> (full car view).
 
 [//]: # (Image References)
 
