@@ -21,14 +21,14 @@ The goal for this project was to:
 [image7]: ./examples/placeholder_small.png "Flipped Image"
 
 ---
-###Files & Code 
+### Files & Code 
 
 The project includes the following files:
 * model.py: containing the script to create and train the model. The annotated code shows the pipeline used for training and validating the model.
 * drive.py: for driving the car in autonomous mode within Udacity's virtual driving environment
 * model.h5: containing the trained convolution neural network (too large to put on Github)
 
-####2. Running the autonomous vehicle within the virtual enviroment
+#### Running the autonomous vehicle within the virtual enviroment
 Using the Udacity-provided simulator and the above drive.py code, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
@@ -54,25 +54,16 @@ Ultimately, during training approximately <b> 42,000 </b> images were collected 
 
 The images were then cropped, as only ~50% of their height contained useful information (the lower section of the image was the vehicle's hood/side, while the upper section displayed the sky, which isn't constructive to the model). Finally, within the model, they were normalized so image values (across the three RGB channels) were between -0.5 and 0.5.
 
-###Model Architecture and Training Strategy
+### Model Architecture, design, and tuning
 
-####1. Architecture
+#### 1. Architecture
 The model is based on Nvidia's "End-to-End Deep Learning for Self-Driving Cars" found <a href = "https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/"> here </a>. It is a convolution neural network that is constructed in the following format 
 
 The model is constructed in the following way: images are normalized (line 88); then put through four convolutional feature maps (three with 5x5 kernels, then two with 3x3 kernels, lines 91-94); followed by four fully-connected layers (lines 98-101). The model includes ReLU layers in between the convolution layers to introduce non-linearlity. 
 
 [image1]: ./examples/placeholder.png "Model Visualization" NVIDIA IMAGE
 
-####2. Model parameter tuning and reducing model overfitting 
-
-The data was separated between training (80%) and validation (20%). The model was tested by running it through the simulator in autonomous mode and ensuring that the vehicle beyhaved safely (e.g. stayed on the track and did not perform any behavior that would be dangerous to passengers in the vehicle).
-
-The model used an adam optimizer, so the learning rate was not tuned manually (line 105). Three epochs were run as, beyond that, the model began to overfit the data. 
-
-
-###Model Architecture and Training Strategy
-
-####1. Solution Design Approach
+#### 2. Solution Design Approach
 
 The high-level strategy for deriving a model architecture was to
 * <b> start with a simple model </b> (e.g. simple linear regression, not a deep neural network), and see where it failed. The linear regression managed to drive the car for ~5 seconds before going off the track. This was to be expected as a linear regression is far too simple...
@@ -80,6 +71,12 @@ The high-level strategy for deriving a model architecture was to
 * <b> improving the model by adding more layers </b>, beginning with LeNet and then gradually converging on the Nvidia end-to-end deep neural network. LeNet worked well on a previous project (identifying traffic signs), however it had trouble turning the car around corners accurately. Nvidia's solution has proved effective in real-world scenarios, and so it ultimately replaced LeNet in this model. 
 
 * <b> testing the model to see where the vehicle failed on the track. </b> At those points of the track, I collected additional training data. For example, there were instances where one wheel left the lane on a turn – in that case, I added more training data collected from that position in the track.
+
+#### 3. Model parameter tuning and reducing model overfitting 
+
+The data was separated between training (80%) and validation (20%). The model was tested by running it through the simulator in autonomous mode and ensuring that the vehicle beyhaved safely (e.g. stayed on the track and did not perform any behavior that would be dangerous to passengers in the vehicle).
+
+The model used an adam optimizer, so the learning rate was not tuned manually (line 105). Three epochs were run as, beyond that, the model began to overfit the data. 
 
 Ultimately, the vehicle was able to </b> drive autonomously around the track within the lane lines at all times. </b>
 
