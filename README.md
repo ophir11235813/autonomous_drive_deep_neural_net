@@ -37,6 +37,12 @@ python drive.py model.h5
 
 Training data was chosen to represent various driving styles, including "examples" of safe driving and how to recover from unsafe situations. 
 
+<table class="image">
+<caption align="bottom">{{ "Borejwiorjiowew" }}</caption>
+<tr><td><img src="./images/images/center_driving.jpg" alt="{{ SECOND DES }}"/></td></tr>
+</table>
+
+
 The data is a combination of:
 * <b>Center lane driving: </b>recorded from two laps in the forward (anti-clockwise) direction plus one lap in the backward (clockwise) direction. Here is an example image of center lane driving (Fig 1):
 * <b>Recovery driving: </b>recorded when the car is centering itself from the edge of the lane. This recovery data was recorded from both sides of the lane (left- and right-recovery). This was so that the vehicle could learn to recover whenever it approached the lane lines. 
