@@ -39,8 +39,9 @@ Training data was chosen to represent various driving styles, including "example
 
 The data is a combination of:
 * <b>Center lane driving: </b>recorded from two laps in the forward (anti-clockwise) direction plus one lap in the backward (clockwise) direction. Here is an example image of center lane driving (top left figure):
-* <b>Recovery driving: </b>recorded when the car is centering itself from the edge of the lane. This recovery data was recorded from both sides of the lane (left- and right-recovery). This was so that the vehicle could learn to recover whenever it approached the lane lines (top right and bottom left figures). 
-* <b>Data augmentation</b>: the track contains mostly left turns. Hence, the training images were flipped (left-to-right) to increase the model's performance on right turns. For example, the (bottom right) image is a flipped image of an image captured by the center camera.
+* <b>Recovery driving: </b>recorded when the car is centering itself from the edge of the lane. This recovery data was recorded from both sides of the lane (left- and right-recovery). This was so that the vehicle could learn to recover whenever it approached the lane lines (top right and bottom right figures). 
+* <b>Data augmentation</b>: the track contains mostly left turns. Hence, the training images were flipped (left-to-right) to increase the model's performance on right turns. For example, the (bottom left) image is a flipped image of an image captured by the center camera.
+
 ![Fig1][image1]
 ![Fig2][image2]
 ![Fig3][image3]
