@@ -56,11 +56,10 @@ The images were then cropped, as only ~50% of their height contained useful info
 ### Model Architecture, design, and tuning
 
 #### 1. Architecture
-The model is based on Nvidia's "End-to-End Deep Learning for Self-Driving Cars" found <a href = "https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/"> here </a>. It is a convolution neural network that is constructed in the following format 
-
-The model is constructed in the following way: images are normalized (line 88); then put through four convolutional feature maps (three with 5x5 kernels, then two with 3x3 kernels, lines 91-94); followed by four fully-connected layers (lines 98-101). The model includes ReLU layers in between the convolution layers to introduce non-linearlity. 
-
-![](./images/images/nvidia.png =250x)
+The model is based on Nvidia's "End-to-End Deep Learning for Self-Driving Cars" found <a href = "https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/"> here </a>. It is a convolution neural network that is constructed using the following architecture: 
+*<b> images are normalized </b> (line 88) so that their values lie between [-0.5, 0.5]
+*<b> images put through four convolutional feature maps </b> with three with 5x5 kernels, then two with 3x3 kernels, (lines 91-94), followed by
+*<b> four fully-connected layers </b> (lines 98-101). The model includes ReLU layers in between the convolution layers to introduce non-linearlity. 
 
 #### 2. Solution Design Approach
 
