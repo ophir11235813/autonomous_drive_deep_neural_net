@@ -1,4 +1,4 @@
-# End-to-end autonomous driving using deep neural networks with Udacity (open source) virtual driving environment
+# End-to-end autonomous driving using deep neural networks with (open source) virtual driving environment
 ---
 
 ## Overview
@@ -9,6 +9,8 @@ The goal for this project was to:
 * Train and validate a model based on Nvidia's end-to-end deep learning architectures
 * Test that the model successfully drives around the track safely (without leaving the road)
 * Summarize the results with a written report
+
+<i> The open source virtual driving environment is copyrighted to Udacity </i>
 
 <b> Result : The vehicle was able to drive autonomously around the track within the lane lines at all times. </b> The video of the output can be found <a href="https://www.youtube.com/watch?v=0YGY1YVQxG0&lc=z22vu3cwjvupxvoo504t1aokgkkbzzybbvdpip3l5wt1bk0h00410">here</a> (full car view).
 
